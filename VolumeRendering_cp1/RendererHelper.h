@@ -12,6 +12,7 @@ public:
     virtual ~CRendererHelper(void);
 
     bool Initialize( HDC hContext_i, CRawDataProcessor* pRawDataProc_i, CTranformationMgr* pTransformationMgr_i );
+	bool Initialize(HDC hContext_i, CRawDataProcessor* pRawDataProc_i, CRawDataProcessor* pMaskProc_i, CTranformationMgr* pTransformationMgr_i);
     void Resize( int nWidth_i, int nHeight_i );
     void Render();
 
@@ -19,6 +20,7 @@ private:
 
     HGLRC m_hglContext;
     CRawDataProcessor* m_pRawDataProc;
+	CRawDataProcessor* m_pMaskProc;
     CTranformationMgr* m_pTransformMgr;
 };
 

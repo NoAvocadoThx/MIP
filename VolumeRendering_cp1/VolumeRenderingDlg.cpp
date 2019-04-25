@@ -56,6 +56,7 @@ CVolumeRenderingDlg::CVolumeRenderingDlg(CWnd* pParent /*=NULL*/)
 {
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
     m_pRawDataProc = new CRawDataProcessor;
+	m_pMaskProc = new CRawDataProcessor;
     m_pTransform = new CTranformationMgr;
 
 }
@@ -84,6 +85,8 @@ BOOL CVolumeRenderingDlg::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
 
+
+
     // Add "About..." menu item to system menu.
 
     // IDM_ABOUTBOX must be in the system command range.
@@ -110,16 +113,25 @@ BOOL CVolumeRenderingDlg::OnInitDialog()
     SetIcon(m_hIcon, FALSE);		// Set small icon
 
     CFileDialog objOpenFile(TRUE);
-    if( IDOK != objOpenFile.DoModal())
+	CFileDialog objOpenFileMask(TRUE);
+    if( IDOK != objOpenFile.DoModal()|| IDOK != objOpenFileMask.DoModal())
     {
         exit(0);
     }
 
+
+	//whole scans
     if( !m_pRawDataProc->ReadFile(  objOpenFile.GetPathName(), 
                                     512, 512, 116 ))
     {
         AfxMessageBox( _T( "Failed to read the data" ));
     }
+	//mask
+	if (!m_pMaskProc->ReadFile(objOpenFileMask.GetPathName(),
+		512, 512, 116))
+	{
+		AfxMessageBox(_T("Failed to read the data"));
+	}
 
 
     return TRUE;  // return TRUE  unless you set the focus to a control
@@ -170,7 +182,7 @@ int CVolumeRenderingDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
 
     mhContext = ::GetDC( m_hWnd );
-    if( !m_Renderer.Initialize( mhContext, m_pRawDataProc, m_pTransform ))
+    if( !m_Renderer.Initialize( mhContext, m_pRawDataProc, m_pMaskProc, m_pTransform ))
     {
         ::MessageBox( 0, _T( "Failed to initialze the renderer !"), _T( "Renderer" ), MB_OK );
         exit(0);

@@ -9,7 +9,9 @@
 #endif
 
 #include "resource.h"		// main symbols
-
+#include <iostream>
+#include <string>
+#include <cstring>
 
 // CVolumeRenderingApp:
 // See VolumeRendering_cp1.cpp for the implementation of this class

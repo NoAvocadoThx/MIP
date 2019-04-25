@@ -40,6 +40,7 @@ private:
     HDC mhContext;
     CPoint mRotReference;
     CRawDataProcessor* m_pRawDataProc;
+	CRawDataProcessor* m_pMaskProc;
     CTranformationMgr* m_pTransform;
 
 public:
