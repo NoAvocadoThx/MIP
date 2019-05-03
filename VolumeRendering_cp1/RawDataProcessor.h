@@ -1,4 +1,5 @@
 #pragma once
+#include "Plane.h"
 class CRawDataProcessor
 {
 public:

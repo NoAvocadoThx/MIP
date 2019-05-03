@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include <GL\glew.h>
 #include <GL\GL.h>
 class CRawDataProcessor;
@@ -15,6 +15,7 @@ public:
 	bool Initialize(HDC hContext_i, CRawDataProcessor* pRawDataProc_i, CRawDataProcessor* pMaskProc_i, CTranformationMgr* pTransformationMgr_i);
     void Resize( int nWidth_i, int nHeight_i );
     void Render();
+	void slicing();
 
 private:
 
