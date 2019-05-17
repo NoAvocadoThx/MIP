@@ -45,6 +45,12 @@
     <ClInclude Include="RawDataProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MtxAdaptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VRDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VolumeRendering_cp1.cpp">
@@ -63,6 +69,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RawDataProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VRDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MtxAdaptor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\glad\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

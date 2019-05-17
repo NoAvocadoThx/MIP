@@ -1,12 +1,13 @@
 #include "StdAfx.h"
 #include "RendererHelper.h"
 #include "RawDataProcessor.h"
+#include <openvr.h>
 #include "TranformationMgr.h"
 
 #pragma comment ( lib, "OpenGL32.lib" )
 #pragma comment ( lib, "glew32.lib" )
 
-
+float t = 0.1f;
 GLfloat dOrthoSize = 1.0f;
 
 CRendererHelper::CRendererHelper(void) :
@@ -170,7 +171,7 @@ bool CRendererHelper::Initialize(HDC hContext_i,
  // Macro to draw the quad.
  // Performance can be achieved by making a call list.
  // To make it simple i am not using that now :-)
-  #define MAP_3DTEXT( TexIndex ) \
+  #define MAP_3DTEXT( TexIndex) \
             glTexCoord3f(0.0f, 0.0f, ((float)TexIndex+1.0f)/2.0f);  \
         glVertex3f(-dOrthoSize,-dOrthoSize,TexIndex);\
         glTexCoord3f(1.0f, 0.0f, ((float)TexIndex+1.0f)/2.0f);  \
@@ -209,9 +210,9 @@ void CRendererHelper::Render()
         -1.0f*(float)m_pRawDataProc->GetWidth()/(float)(float)m_pRawDataProc->GetHeight(), 
         (float)m_pRawDataProc->GetWidth()/(float)m_pRawDataProc->GetDepth());
 
-	glScaled((float)m_pMaskProc->GetWidth() / (float)m_pMaskProc->GetWidth(),
+	/*glScaled((float)m_pMaskProc->GetWidth() / (float)m_pMaskProc->GetWidth(),
 		-1.0f*(float)m_pMaskProc->GetWidth() / (float)(float)m_pMaskProc->GetHeight(),
-		(float)m_pMaskProc->GetWidth() / (float)m_pMaskProc->GetDepth());
+		(float)m_pMaskProc->GetWidth() / (float)m_pMaskProc->GetDepth());*/
 
     // Apply the user provided transformations
     glMultMatrixd( m_pTransformMgr->GetMatrix());
@@ -228,6 +229,7 @@ void CRendererHelper::Render()
 			
         glEnd();
      }
+	//glDisable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBindTexture(GL_TEXTURE_3D, m_pMaskProc->GetTexture3D());
 	for (float fIndx = -1.0f; fIndx <= 1.0f; fIndx += 0.01f)

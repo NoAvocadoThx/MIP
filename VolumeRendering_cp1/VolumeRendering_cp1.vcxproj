@@ -51,14 +51,17 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\openvr\headers;$(SolutionDir)\glad\include;$(SolutionDir)\glfw\include;$(SolutionDir)\glad\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\openvr\lib\win32;$(SolutionDir)\glfw\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openvr_api.lib;glu32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -74,17 +77,20 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\openvr\headers;$(SolutionDir)\glad\include;$(SolutionDir)\glfw\include;$(SolutionDir)\glad\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\openvr\lib\win32;$(SolutionDir)\glfw\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openvr_api.lib;glu32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -102,6 +108,7 @@
     <None Include="res\MIP.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MtxAdaptor.h" />
     <ClInclude Include="RawDataProcessor.h" />
     <ClInclude Include="RendererHelper.h" />
     <ClInclude Include="Resource.h" />
@@ -110,8 +117,11 @@
     <ClInclude Include="TranformationMgr.h" />
     <ClInclude Include="VolumeRenderingDlg.h" />
     <ClInclude Include="VolumeRendering_cp1.h" />
+    <ClInclude Include="VRDevice.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\glad\src\glad.c" />
+    <ClCompile Include="MtxAdaptor.cpp" />
     <ClCompile Include="RawDataProcessor.cpp" />
     <ClCompile Include="RendererHelper.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -121,6 +131,7 @@
     <ClCompile Include="TranformationMgr.cpp" />
     <ClCompile Include="VolumeRenderingDlg.cpp" />
     <ClCompile Include="VolumeRendering_cp1.cpp" />
+    <ClCompile Include="VRDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MIP.rc" />
