@@ -3,12 +3,18 @@
 
 #include <GL\glew.h>
 
+Plane *plane;
+
+glm::vec3 v1 = glm::vec3(0, 0, 0);
+glm::vec3 v2 = glm::vec3(0, 0, 0);
+glm::vec3 v3 = glm::vec3(0, 0, 0);
 CRawDataProcessor::CRawDataProcessor(void) : 
 m_uImageWidth(0)
 ,m_uImageHeight(0)
 ,m_uImageCount(0)
 ,m_nTexId(0)
 {
+	plane = new Plane(v1,v2,v3);
 }
 
 
@@ -53,13 +59,16 @@ bool CRawDataProcessor::ReadFile(LPCTSTR lpDataFile_i, int nWidth_i, int nHeight
     // Convert the data to RGBA data.
     // Here we are simply putting the same value to R, G, B and A channels.
     // Usually for raw data, the alpha value will be constructed by a threshold value given by the user 
-
+	
     for( int nIndx = 0; nIndx < m_uImageWidth*m_uImageHeight*m_uImageCount; ++nIndx )
     {
-        pRGBABuffer[nIndx*4] = chBuffer[nIndx];
-        pRGBABuffer[nIndx*4+1] = chBuffer[nIndx];
-        pRGBABuffer[nIndx*4+2] = chBuffer[nIndx];
-        pRGBABuffer[nIndx*4+3] = chBuffer[nIndx];
+		
+			pRGBABuffer[nIndx * 4] = chBuffer[nIndx];
+			pRGBABuffer[nIndx * 4 + 1] = chBuffer[nIndx];
+			pRGBABuffer[nIndx * 4 + 2] = chBuffer[nIndx];
+			pRGBABuffer[nIndx * 4 + 3] = chBuffer[nIndx];
+		    
+		
     }
 
     // If this function is getting called again for another data file.

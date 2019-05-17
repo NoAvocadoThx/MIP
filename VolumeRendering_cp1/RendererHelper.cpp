@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdAfx.h"
 #include "RendererHelper.h"
 #include "RawDataProcessor.h"
 #include <openvr.h>
@@ -34,8 +34,8 @@ bool CRendererHelper::Initialize( HDC hContext_i,
     stPixelFormatDescriptor.dwFlags = PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL | PFD_DRAW_TO_WINDOW ;
     stPixelFormatDescriptor.iPixelType = PFD_TYPE_RGBA;
     stPixelFormatDescriptor.cColorBits = 24;
-    stPixelFormatDescriptor.cDepthBits = 32;
-    stPixelFormatDescriptor.cStencilBits = 16;
+    stPixelFormatDescriptor.cDepthBits =64;
+    stPixelFormatDescriptor.cStencilBits = 8;
     stPixelFormatDescriptor.iLayerType = PFD_MAIN_PLANE ;
     int nPixelFormat = ChoosePixelFormat( hContext_i, &stPixelFormatDescriptor ); //Collect the pixel format.
 
@@ -94,8 +94,8 @@ bool CRendererHelper::Initialize(HDC hContext_i,
 	stPixelFormatDescriptor.dwFlags = PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL | PFD_DRAW_TO_WINDOW;
 	stPixelFormatDescriptor.iPixelType = PFD_TYPE_RGBA;
 	stPixelFormatDescriptor.cColorBits = 24;
-	stPixelFormatDescriptor.cDepthBits = 32;
-	stPixelFormatDescriptor.cStencilBits = 16;
+	stPixelFormatDescriptor.cDepthBits = 64;
+	stPixelFormatDescriptor.cStencilBits = 8;
 	stPixelFormatDescriptor.iLayerType = PFD_MAIN_PLANE;
 	int nPixelFormat = ChoosePixelFormat(hContext_i, &stPixelFormatDescriptor); //Collect the pixel format.
 
@@ -188,7 +188,9 @@ void CRendererHelper::Render()
     glClear( GL_COLOR_BUFFER_BIT  | GL_DEPTH_BUFFER_BIT );
 
     glEnable( GL_ALPHA_TEST );
-    glAlphaFunc( GL_GREATER, 0.001f);
+	float input;
+	std::cin >> input;
+    glAlphaFunc( GL_GREATER, 0.002f);
 
     glEnable(GL_BLEND);
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
@@ -238,5 +240,11 @@ void CRendererHelper::Render()
 		MAP_3DTEXT(fIndx);
 		glEnd();
 	}
+
+}
+
+
+
+void CRendererHelper::slicing() {
 
 }

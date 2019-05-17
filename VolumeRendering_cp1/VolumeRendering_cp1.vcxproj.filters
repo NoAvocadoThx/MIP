@@ -19,6 +19,12 @@
     <None Include="res\MIP.rc2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="shader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VolumeRendering_cp1.h">
@@ -45,10 +51,14 @@
     <ClInclude Include="RawDataProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="MtxAdaptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VRDevice.h">
+=======
+    <ClInclude Include="Plane.h">
+>>>>>>> 11ff9f381300b64b090ac5a646a71e5b4a5f65d8
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,6 +81,7 @@
     <ClCompile Include="RawDataProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="VRDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -78,6 +89,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\glad\src\glad.c">
+=======
+    <ClCompile Include="Plane.cpp">
+>>>>>>> 11ff9f381300b64b090ac5a646a71e5b4a5f65d8
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
